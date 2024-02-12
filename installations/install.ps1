@@ -1,0 +1,1 @@
+git clone --depth 1 https://github.com/tm-ahad/lapis-deps.git $HOME\.lapis
