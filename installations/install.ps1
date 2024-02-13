@@ -10,4 +10,13 @@ Remove-Item -Path "$LAPIS\.git\" -Recurse -Force
 
 Remove-Item -Path "$LAPIS/installations/bin/assembler/linux" -Force
 Remove-Item -Path "$LAPIS/installations/bin/compiler/linux" -Force
-Rename-Item -Path "$LAPIS/installations/bin/compiler/windows" -NewName "lapis" -Force
+Rename-Item -Path "$LAPIS/installations/bin/compiler/windows" "lapis"
+
+$LAPIS_PATH = "$LAPIS/installations/bin/compiler/lapis"
+
+$PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
+if ($PATH -notlike "*$LAPIS_PATH*") {
+    $newPath += ";$LAPIS_PATH"
+    [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
+}
+
